@@ -1,0 +1,119 @@
+{% extends "layout.html" %} 
+{% block body %}
+<!-- Pre-selected value -->
+<!-- Pre-selected value -->
+
+<div id=selection_form class='form-group mdl-card container flexbox-centering'>
+    <form action="{{ url_for('dashboard')}}">
+     <select name='week' class="form-control" justify-content='center'>
+            {% for week in weeks %}
+                {% if week == selected_week %}
+                <option selected value="{{ week }}">Week {{ week }}</option> 
+                {% else %} 
+                <option value="{{ week }}">Week {{ week }}</option> 
+                {% endif %}
+           {% endfor %}
+     </select>
+     <div class="mdl-card__actions mdl-card--border">
+        <button  class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit">Go</button>
+        <a onclick="startIntro()" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+            Need help?
+          </a>
+     </div>
+        
+    </form>
+    
+</div>
+<div id='score-board' class="card-container">
+  <div class="row">
+    <!-- flex-container -->
+      <div class="col-md-12 flex-container">
+        <!-- flex-item -->
+          <div class="flex-item">
+            <div class="flex-item-inner">
+                <!-- card -->
+                <a href="#">
+                      <div class="card-front bg-violet">
+                          <i class="fa fa-money fa-3x tile-icon icon-white"></i>
+                          <h4>Total Points</h4>
+                          <p class="detail">{{total_points}}</p>
+                      </div>
+                      <div class="card-back bg-violet">
+                          <p class="title">Points</p>
+                          <p class="desc">Earn more points by using the driving app!</p>
+                      </div>
+                  </a>
+                  <!-- /card -->
+              </div>
+          </div>
+          <!-- /flex-item -->
+          
+          <!-- flex-item -->
+          <div class="flex-item">
+            <div class="flex-item-inner">
+                <!-- card -->
+                  <a href="#">
+                      <div class="card-front bg-magenta" text-align='center'>
+                          <i class="fa fa-car fa-3x tile-icon icon-white"></i>
+                          <h4>Total Drivetime</h4>
+                          <p class="detail">{{total_drive}}</p>
+                      </div>
+                      <div class="card-back bg-magenta">
+                          <p class="title">Total Driving Hours</p>
+                          <p class="desc">You have logged a total of {{total_drive}} hours! Keep it up!</p>
+                      </div>
+                  </a>
+                  <!-- /card -->
+              </div>
+          </div>
+          <!-- /flex-item -->
+          
+      </div>
+      <!-- /flex-container -->
+  </div>
+</div>
+<div id='charts'>
+    <h3 id='place-holder'></h3>
+    <div id='points_chart'>
+        <embed id='pygal_div' type="image/svg+xml" src= {{ chart|safe }} />
+    </div>
+    <div  id='drive_chart'>
+        <embed  id='pygal_div' type="image/svg+xml" src= {{ drive_chart|safe }} />
+    </div>
+</div>
+<script type="text/javascript" src="static/intro.js"></script>
+<link rel="stylesheet" href="static/introjs.css"></link>
+<script type="text/javascript">
+    function startIntro(){
+      var intro = introJs();
+        intro.setOptions({
+          steps: [
+            { 
+              intro: "Hi, this is a quick tour of the dashboard!"
+            },
+            {
+              element: document.querySelector('#selection_form'),
+              intro: "Select which week stats you want to view"
+            },
+            {
+              element: document.querySelector('#score-board'),
+              intro: 'These are the totals for that week',
+              position: 'right'
+            },
+            {
+              intro: 'You get 100 points for every perfect hour you drive!</br>'
+               + 'Points = 10*SCORE*Drivetime</br>' +
+               'Score starts at 10 and -2 each time alarm sounds.'
+            },
+            {
+              element: document.querySelector('#place-holder'),
+              intro: 'These charts are the detailed breakdown for the week',
+              position: 'bottom'
+            },
+          ]
+        });
+
+        intro.start();
+    }
+  </script>
+{% endblock %}

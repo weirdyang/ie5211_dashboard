@@ -1,0 +1,50 @@
+{%extends 'layout.html'%}
+{% block body %}
+<!-- List with avatar and controls -->
+<style>
+    .demo-list-control {
+      width: 300px;
+    }
+    
+    .demo-list-radio {
+      display: inline;
+    }
+    </style>
+    <div class='flexbox-centering'>
+
+ <ul class="mdl-card mdl-list">
+      <li class="mdl-list__item border-bottom">
+        <span class="mdl-list__item-primary-content ">
+          <i class="material-icons  mdl-list__item-avatar">person</i>
+          Bryan Cranston has earned 120 points today!
+        </span>
+        <span class="mdl-list__item-secondary-action">
+            <i onclick="myFunction(this)" class="fa fa-heart"></i>
+        </span>
+      </li>
+      <li class="mdl-list__item border-bottom">
+        <span class="mdl-list__item-primary-content">
+          <i class="material-icons  mdl-list__item-avatar">person</i>
+          Aaron Paul just logged on!
+        </span>
+        <span class="mdl-list__item-secondary-action">
+            <i onclick="myFunction(this)" class="fa fa-heart"></i>
+        </span>
+      </li>
+      <li class="mdl-list__item border-bottom">
+        <span class="mdl-list__item-primary-content">
+          <i class="material-icons  mdl-list__item-avatar">person</i>
+          Bob Odenkirk has hit a new high score of 150!
+        </span>
+        <span class="mdl-list__item-secondary-action">
+            <i id='like_icon' onclick="myFunction(this)" class="fa fa-heart"></i>
+        </span>
+      </li>
+    </ul>
+    </div>
+    <script>
+    function myFunction(x) {
+        x.classList.toggle("tomato-color");
+    }
+</script>
+{% endblock %}

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <meta content="initial-scale=1, width=device-width shrink-to-fit=yes" name="viewport" />
+    <link rel="stylesheet" type="text/css" href="/static/styles.css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>IE 5211 DASHBOARD PROTOTYPE AND FEATURE TESTING</title>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='appicon.png') }}">
+</head>
+<body>
+        <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+                <header class="custom-header mdl-layout__header mdl-layout__header--waterfall">
+                  <div class="mdl-layout__header-row">
+                    <!-- Title -->
+                    <span class="mdl-layout-title">Dashboard Prototype</span>
+                    <!-- Add spacer, to align navigation to the right -->
+                    <div class="mdl-layout-spacer"></div>
+                    <!-- Navigation. We hide it in small screens. -->
+                    <nav class="mdl-navigation mdl-layout--large-screen-only">
+                      <a class="mdl-navigation__link" href="{{url_for('index')}}">Home</a>
+                      <a class="mdl-navigation__link" href="{{url_for('dashboard')}}">Weekly Stats</a>
+                      <a class="mdl-navigation__link" href="{{url_for('friends')}}">Friends</a>
+                    </nav>
+                  </div>
+                </header>
+                <div class="mdl-layout__drawer">
+                  <span class="mdl-layout-title">Menu</span>
+                  <nav class="mdl-navigation">
+                        <a class="mdl-navigation__link" href="{{url_for('index')}}">Home</a>
+                        <a class="mdl-navigation__link" href="{{url_for('dashboard')}}">Weekly Stats</a>
+                        <a class="mdl-navigation__link" href="{{url_for('friends')}}">Friends</a>
+                  </nav>
+                </div>
+    <main class="mdl-layout__content">
+    <div class="container">
+          
+        {%block body %}{%endblock%}
+      
+    </div>
+    </main>    
+
+</body>
+
+</html>
